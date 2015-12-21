@@ -1,0 +1,53 @@
+<html class="no-js" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home</title>
+  <!-- Material design fonts -->
+  <link rel="stylesheet" href="dist/css/roboto-font.css" type="text/css">
+  <link rel="stylesheet" href="dist/css/material-icons.css" type="text/css">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- -->
+  <link href="dist/css/roboto.min.css" rel="stylesheet">
+  <link href="dist/css/material-fullpalette.min.css" rel="stylesheet">
+  <link href="dist/css/ripples.min.css" rel="stylesheet">
+  <link href="dist/css/snackbar.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-controller="ItemCtrl">
+  <div class="container-fluid" >
+    <div  ng-include="'menu.html'"></div>
+    <div class="bs-docs-section clearfix">
+      <div class="container">
+        <div ng-repeat="item  in filteredItems" ng-if="$index % 3 == 0"  class="row">
+          <div ng-repeat="i in [$index, $index+1, $index+2]" ng-if="filteredItems[i]" class="col-md-4" >
+            <div class="panel" ng-class="{'panel-primary': getItemType(filteredItems[i]) == 0, 'panel-success': getItemType(filteredItems[i]) == 1}">
+              <div class="panel-heading">
+                <h3 class="panel-title" ng-if="getItemType(filteredItems[i]) == 0">User</h3>
+                <h3 class="panel-title" ng-if="getItemType(filteredItems[i]) == 1">Group</h3>
+              </div>
+              <div class="panel-body">
+                <p>{{ filteredItems[i].email }}</p>
+                <p ng-if="filteredItems[i].type == User">{{ filteredItems[i].tel}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="database/data.json"></script>
+  <script src="dist/js/ripples.min.js"></script>
+  <script src="dist/js/material.min.js"></script>
+  <script src="dist/js/snackbar.min.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/module/app.js"></script>
+  <script src="js/module/utils.js"></script>
+  <script src="js/module/model/itemService.js"></script>
+  <script src="js/module/controller/itemCtrl.js"></script>
+  <script src="js/module/model/Item.js"></script>
+
+</body>

@@ -1,0 +1,76 @@
+(function(){
+
+    'use strict';
+
+    var itemService = angular.module('app').service('Items', __ItemService);
+
+	function __ItemService($filter, Utils)
+	{
+		var service = {};
+		
+		var item = {
+			iid : undefined,
+			email : undefined,
+			childrenId : []
+		};
+
+		var list = [];
+
+		//service.get = get;
+		//service.list = list;
+		//service.remove = remove;
+		service.create = create; 
+		service.save = save;
+		service.getList = getList;
+
+		function create(mail, firstName, lastName, tel)
+		{
+			var newItem = angular.copy(item);
+			newItem.iud = Utils.generateUUID();
+			newItem.email = mail;
+			newItem.firstName = firstName;
+			newItem.lastName = lastName;
+			newItem.tel = tel;
+			return newItem;
+		}
+
+		function create(mail, _name)
+		{
+			var newItem = angular.copy(item);
+			newItem.iud = Utils.generateUUID();
+			newItem.email = mail;
+			newItem._name = _name;
+			return newItem;
+		}
+
+		function create()
+		{
+			var newItem = angular.copy(item);
+			newItem.iud = Utils.generateUUID();
+			newItem.email = "example@mail.com";
+			return newItem;
+		}
+
+		function save(item)
+        {
+			console.log(item);
+            for (var idx in list)
+            {
+                if (list[idx].uid === item.uid)
+                {
+                    list[idx] = item;
+                    return;
+                }
+            }
+            list.push(item);
+        }
+
+		function getList()
+		{
+			return list;
+		}
+		return service;
+	}
+
+})();
+

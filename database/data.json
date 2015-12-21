@@ -1,0 +1,5 @@
+d =
+'{"users":[{"iid" : "0", "firstName" : "Yezan", "lastName" : "Rafed", "email":"yezan@zzz.com", "tel":"0554545", "parentId":["20"]}'+
+', {"iid" : "1", "firstName" : "Amine", "lastName" : "Najihi", "email":"amine@njn.com", "tel":"0746881005"}'+
+', {"iid" : "2", "firstName" : "Dicki", "lastName" : "Emanual", "email":"dicki@emn.com", "tel":"0146541293"}],'+
+'"groups":[{"iid" : "20", "name" : "ASL", "email": "asl@insa.com"}, {"iid" : "21", "name" : "INSA", "email": "insa@insa.com"}]}';

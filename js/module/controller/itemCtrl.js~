@@ -1,0 +1,35 @@
+(function(){
+
+    'use strict';
+
+    angular.module('app').controller('ItemCtrl', ItemCtrl);
+
+	function ItemCtrl($scope, Items)
+	{
+		$scope.ctrlData = {
+			item : undefined,
+			list : []
+		};
+		$scope.newItem = function() {
+			$scope.ctrlData.item = Items.create();
+		}
+
+		$scope.saveItem = function()
+		{
+			Items.save(item);
+			updateList();
+		}
+
+		function init()
+        {
+            updateList();
+        }
+
+		function updateList()
+		{
+			$scope.ctrlData.list = angular.copy(Items.getList());
+		}
+
+	}
+
+})();

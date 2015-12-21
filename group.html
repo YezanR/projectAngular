@@ -1,0 +1,96 @@
+<html class="no-js" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Group</title>
+  <!-- Material design fonts -->
+  <link rel="stylesheet" href="dist/css/roboto-font.css" type="text/css">
+  <link rel="stylesheet" href="dist/css/material-icons.css" type="text/css">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="dist/css/roboto.min.css" rel="stylesheet">
+  <link href="dist/css/material-fullpalette.min.css" rel="stylesheet">
+  <link href="dist/css/ripples.min.css" rel="stylesheet">
+  <link href="dist/css/snackbar.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-controller="GroupCtrl as group">
+
+  <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Add Group</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <fieldset>
+              <legend>Group</legend>
+              <div class="form-group is-empty">
+                <label for="groupName" class="col-md-2 control-label">Name</label>
+
+                <div class="col-md-10">
+                  <input type="text" no-validate class="form-control" id="groupName" placeholder="First name" ng-model="grpData.group.name">
+                </div>
+                <span class="material-input"></span>
+              </div>
+
+              <div class="form-group is-empty">
+                <label for="groupEmail" class="col-md-2 control-label">Email</label>
+                <div class="col-md-10">
+                  <input type="email" no-validate class="form-control" id="groupEmail" placeholder="Email" ng-model="grpData.group.email">
+                </div>
+                <span class="material-input"></span>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-click="group.saveItem(grpData.group)" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div ng-controller="ItemCtrl" ng-init="ctrlData.currentTab='group'" ng-include="'menu.html'"></div>
+
+    <div class="bs-docs-section clearfix" >
+      <div class="container">
+        <table class="table table-hover ">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="it in grpData.list">
+              <td>{{ it.name }}</td>
+              <td>{{ it.email }}</td>
+              <td>{{ it.childrenId.size() }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="btn btn-danger btn-fab" data-toggle="modal" data-target="#simple-dialog" ng-click="newUser()" style="position:fixed; right: 20px; bottom:32px;"><i class="material-icons" style="top:0px;">add</i></span>
+    </div>
+    <script src="dist/js/jquery.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/ripples.min.js"></script>
+    <script src="dist/js/material.min.js"></script>
+    <script src="dist/js/snackbar.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/module/app.js"></script>
+    <script src="js/module/utils.js"></script>
+    <script src="js/module/model/itemService.js"></script>
+    <script src="js/module/controller/itemCtrl.js"></script>
+    <script src="js/module/model/Item.js"></script>
+
+  </body>
